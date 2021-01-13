@@ -1,0 +1,9 @@
+com\zf\entity\CollectCatalog.class
+com\zf\entity\Collect.class
+com\zf\entity\Thumb.class
+com\zf\entity\Comment.class
+com\zf\entity\CommonResult.class
+com\zf\entity\User.class
+com\zf\entity\Reply.class
+com\zf\entity\Article.class
+com\zf\entity\Classification.class

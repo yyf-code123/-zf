@@ -9,8 +9,10 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>commons</module>
+
     <module>backstage-provider-8001</module>
       <module>eureka-service-7001</module>
+
     <module>admin-consumer-81</module>
   </modules>
   <packaging>pom</packaging>
@@ -112,4 +114,6 @@
   </build>
 
 </project>
+
+
 
