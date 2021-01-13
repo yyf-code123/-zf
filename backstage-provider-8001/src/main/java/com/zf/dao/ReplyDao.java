@@ -1,0 +1,20 @@
+package com.zf.dao;
+
+import com.zf.entity.Reply;
+import com.zf.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.test.annotation.Rollback;
+
+import javax.transaction.Transactional;
+
+public interface ReplyDao extends JpaRepository<Reply,Integer>, JpaSpecificationExecutor {
+
+    @Query(value = "delete from Reply where id = ?1")
+    @Modifying
+    @Transactional
+    @Rollback(value = false)
+    public Integer delete(Integer id);
+}
