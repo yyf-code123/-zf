@@ -1,3 +1,4 @@
+/*
 package com.zf.cache;
 
 import com.zf.service.UserService;
@@ -23,7 +24,8 @@ public class RedisTest {
     @Resource
     StringRedisTemplate stringRedisTemplate;
 
-    /**
+    */
+/**
      * Redis常见的五大数据类型
      * String(字符串)、List(列表)、Set(集合)、Hash(散列)、ZSet(有序集合)
      * stringRedisTemplate.opsForValue()[String(字符串)]
@@ -31,15 +33,19 @@ public class RedisTest {
      * stringRedisTemplate.opsForSet()[Set(集合)]
      * stringRedisTemplate.opsForHash()[Hash(散列)]
      * stringRedisTemplate.opsForZSet()[ZSet(有序集合)]
-     */
+     *//*
+
     
     @Test
     public void test(){
-     /*   String k1 = stringRedisTemplate.opsForValue().get("k1");
+     */
+/*   String k1 = stringRedisTemplate.opsForValue().get("k1");
         stringRedisTemplate.opsForValue().set("k10","666");
-        System.out.println(k1);*/
+        System.out.println(k1);*//*
+
 
         stringRedisTemplate.opsForList().leftPush("myList","棒棒棒");
 
     }
 }
+*/
