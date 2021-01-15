@@ -13,17 +13,18 @@ import javax.annotation.Resource;
  * 2021-01-13 11:29
  */
 @RestController
+@RequestMapping("/admin/comment")
 public class CommentController {
     @Resource
     private CommentService commentService;
 
-    @GetMapping("/comment/get/{id}")
+    @GetMapping("/get/{id}")
     public CommonResult get(@PathVariable("id") Integer id){
         Comment result = commentService.findById(id);
         return new CommonResult(200,"查询成功",result);
     }
 
-    @PostMapping("/comment/save")
+    @PostMapping("/save")
     public CommonResult save(@RequestBody Comment comment){
         Comment result = commentService.save(comment);
         if(null!=result) {
@@ -33,7 +34,7 @@ public class CommentController {
         }
     }
 
-    @GetMapping("/comment/delete/{id}")
+    @GetMapping("/delete/{id}")
     public CommonResult delete(@PathVariable("id") Integer id){
         Integer result = commentService.delete(id);
         if (result>0) {

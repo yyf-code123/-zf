@@ -14,6 +14,9 @@
       <module>eureka-service-7001</module>
 
     <module>admin-consumer-81</module>
+      <module>user-consumer-82</module>
+      <module>earlystage-provider-8011</module>
+      <module>gateway-80</module>
   </modules>
   <packaging>pom</packaging>
 

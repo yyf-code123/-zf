@@ -12,18 +12,21 @@ import javax.annotation.Resource;
 /**
  * 2021-01-13 11:29
  */
+
 @RestController
+@RequestMapping("/admin/classification")
 public class ClassificationController {
+
     @Resource
     private ClassificationService classificationService;
 
-    @GetMapping("/classification/get/{id}")
+    @GetMapping("/get/{id}")
     public CommonResult get(@PathVariable("id") Integer id){
         Classification result = classificationService.findById(id);
         return new CommonResult(200,"查询成功",result);
     }
 
-    @PostMapping("/classification/save")
+    @PostMapping("/save")
     public CommonResult save(@RequestBody Classification classification){
         Classification result = classificationService.save(classification);
         if(null!=result) {
@@ -33,7 +36,7 @@ public class ClassificationController {
         }
     }
 
-    @GetMapping("/classification/delete/{id}")
+    @GetMapping("/delete/{id}")
     public CommonResult delete(@PathVariable("id") Integer id){
         Integer result = classificationService.delete(id);
         if (result>0) {

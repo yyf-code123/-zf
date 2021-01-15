@@ -13,17 +13,18 @@ import javax.annotation.Resource;
  * 2021-01-13 11:29
  */
 @RestController
+@RequestMapping("/admin/collect")
 public class CollectController {
     @Resource
     private CollectService collectService;
 
-    @GetMapping("/collect/get/{id}")
+    @GetMapping("/get/{id}")
     public CommonResult get(@PathVariable("id") Integer id){
         Collect result = collectService.findById(id);
         return new CommonResult(200,"查询成功",result);
     }
 
-    @PostMapping("/collect/save")
+    @PostMapping("/save")
     public CommonResult save(@RequestBody Collect collect){
         Collect result = collectService.save(collect);
         if(null!=result) {
@@ -33,7 +34,7 @@ public class CollectController {
         }
     }
 
-    @GetMapping("/collect/delete/{id}")
+    @GetMapping("/delete/{id}")
     public CommonResult delete(@PathVariable("id") Integer id){
         Integer result = collectService.delete(id);
         if (result>0) {

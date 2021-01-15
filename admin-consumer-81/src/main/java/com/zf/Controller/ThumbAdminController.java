@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 
 @RestController
+@RequestMapping("/consumer/admin/thumb")
 public class ThumbAdminController {
 
     @Resource
@@ -16,25 +17,25 @@ public class ThumbAdminController {
     public static final String BACKSTAGE_URL = "http://BACKSTAGE-PROVIDER-SERVICE";
 
 
-    @GetMapping(value = "/consumer/thumb/getOne/{id}")
+    @GetMapping(value = "/getOne/{id}")
     public CommonResult<Thumb> getOne(@PathVariable("id") Integer id){
-        return restTemplate.getForObject(BACKSTAGE_URL+"/thumb/getOne/"+id,CommonResult.class);
+        return restTemplate.getForObject(BACKSTAGE_URL+"/admin/thumb/getOne/"+id,CommonResult.class);
     }
 
-    @PostMapping(value = "/consumer/thumb/save")
+    @PostMapping(value = "/save")
     public CommonResult<Thumb> save(Thumb thumb){
-        return  restTemplate.postForObject(BACKSTAGE_URL+"/thumb/save",thumb,CommonResult.class);
+        return  restTemplate.postForObject(BACKSTAGE_URL+"/admin/thumb/save",thumb,CommonResult.class);
     }
 
-    @PostMapping(value = "/consumer/thumb/update")
+    @PostMapping(value = "/update")
     public CommonResult<Thumb> update(Thumb thumb){
         System.out.println(thumb);
-        return  restTemplate.postForObject(BACKSTAGE_URL+"/thumb/update",thumb,CommonResult.class);
+        return  restTemplate.postForObject(BACKSTAGE_URL+"/admin/thumb/update",thumb,CommonResult.class);
 
     }
 
-    @RequestMapping(value = "/consumer/thumb/delete/{id}")
+    @RequestMapping(value = "/delete/{id}")
     public CommonResult<Thumb> delete(@PathVariable("id") Integer id){
-        return  restTemplate.getForObject(BACKSTAGE_URL+"/thumb/delete/"+id,CommonResult.class);
+        return  restTemplate.getForObject(BACKSTAGE_URL+"/admin/thumb/delete/"+id,CommonResult.class);
     }
 }

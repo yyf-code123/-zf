@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 
 @RestController
+@RequestMapping("/consumer/admin/user")
 public class UserAdminController {
 
     @Resource
@@ -16,25 +17,25 @@ public class UserAdminController {
     public static final String BACKSTAGE_URL = "http://BACKSTAGE-PROVIDER-SERVICE";
 
 
-    @GetMapping(value = "/consumer/user/getOne/{id}")
+    @GetMapping(value = "/getOne/{id}")
     public CommonResult<User> getOne(@PathVariable("id") Integer id){
-        return restTemplate.getForObject(BACKSTAGE_URL+"/user/getOne/"+id,CommonResult.class);
+        return restTemplate.getForObject(BACKSTAGE_URL+"/admin/user/getOne/"+id,CommonResult.class);
     }
 
-    @PostMapping(value = "/consumer/user/save")
+    @PostMapping(value = "/save")
     public CommonResult<User> save(User user){
-        return  restTemplate.postForObject(BACKSTAGE_URL+"/user/save",user,CommonResult.class);
+        return  restTemplate.postForObject(BACKSTAGE_URL+"/admin/user/save",user,CommonResult.class);
     }
 
-    @PostMapping(value = "/consumer/user/update")
+    @PostMapping(value = "/update")
     public CommonResult<User> update(User user){
         System.out.println(user);
-        return  restTemplate.postForObject(BACKSTAGE_URL+"/user/update",user,CommonResult.class);
+        return  restTemplate.postForObject(BACKSTAGE_URL+"/admin/user/update",user,CommonResult.class);
 
     }
 
-    @RequestMapping(value = "/consumer/user/delete/{id}")
+    @RequestMapping(value = "/delete/{id}")
     public CommonResult<User> delete(@PathVariable("id") Integer id){
-        return  restTemplate.getForObject(BACKSTAGE_URL+"/user/delete/"+id,CommonResult.class);
+        return  restTemplate.getForObject(BACKSTAGE_URL+"/admin/user/delete/"+id,CommonResult.class);
     }
 }

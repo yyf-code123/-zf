@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 @RestController
+@RequestMapping("/admin/reply")
 public class ReplyController {
 
     @Resource
@@ -17,25 +18,25 @@ public class ReplyController {
     @Resource
     ReplyDao replyDao;
 
-    @GetMapping(value = "/reply/getOne/{id}")
+    @GetMapping(value = "/getOne/{id}")
     public CommonResult<Reply> getOne(@PathVariable("id") Integer id){
         Reply reply = replyDao.findById(id).get();
         return new CommonResult<>(200,"查询成功",reply);
     }
 
-    @PostMapping(value = "/reply/save")
+    @PostMapping(value = "/save")
     public CommonResult<Reply> save(@RequestBody Reply reply){
         System.out.println(replyService.save(reply));
         return new CommonResult<>(200,"回复成功");
     }
 
-    @PostMapping(value = "/reply/update")
+    @PostMapping(value = "/update")
     public CommonResult<Reply> update(@RequestBody Reply reply){
         System.out.println(replyService.save(reply));
         return new CommonResult<>(200,"修改成功");
     }
 
-    @RequestMapping(value = "/reply/delete/{id}")
+    @RequestMapping(value = "/delete/{id}")
     public CommonResult<Reply> delete(@PathVariable("id") Integer id){
         replyService.delete(id);
         return new CommonResult<>(200,"删除成功");

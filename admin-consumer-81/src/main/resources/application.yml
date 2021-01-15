@@ -1,8 +1,6 @@
 server:
   port: 81
 
-<<<<<<< HEAD
-
 spring:
   application:
     name: admin-consumer-service
@@ -12,16 +10,12 @@ spring:
     url: jdbc:mysql://localhost:3366/db_zf?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
-=======
-spring:
-  application:
-    name: admin-consumer-service
->>>>>>> b1e461bde3d4952186c45c14330f3c1c875e8812
+
 
 eureka:
   client:
     register-with-eureka: true
-<<<<<<< HEAD
+
     fetchRegistry: true
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka  #单机版
@@ -35,15 +29,4 @@ eureka:
     hibernate:
       ddl-auto: update
     show-sql: true
-=======
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:7001/eureka
-  instance:
-    instance-id: admin81
-    prefer-ip-address: true
-    #Eureka客户端向服务端发送心跳的时间间隔.单位为秒(默认30 秒)
-    lease-renewal-interval-in-seconds: 1
-    #Eureka服务端在收到最后一次心跳等待时间上限.单位为秒(默认90 秒),超时将剔除服务
-    lease-expiration-duration-in-seconds: 2
->>>>>>> b1e461bde3d4952186c45c14330f3c1c875e8812
+
