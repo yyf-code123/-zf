@@ -73,7 +73,7 @@ public class ArticleController {
             articleMap.put("userNickName",userNickName);
             articleMap.put("articleId",article.getId());
             articleMap.put("classificationName",classificationName);
-
+            articleMap.put("articleContent",article.getContent());
             articleMapList.add(articleMap);
         }
         return new CommonResult<ArrayList>(200,"成功查询所有文章",articleMapList);

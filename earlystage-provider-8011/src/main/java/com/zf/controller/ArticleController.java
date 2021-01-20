@@ -76,7 +76,7 @@ public class ArticleController {
         List<Map> articleMapList=new ArrayList<>();
 
         for (Article article:articleList){
-
+            String articleUserName = userService.getUserNameById(article.getUserId());
             List<Comment> commentList=commentService.getArticleAllCommentById(article.getId());
             ArrayList<HashMap> commentMapList = new ArrayList<>();
 
@@ -131,6 +131,8 @@ public class ArticleController {
             articleMap.put("article",article);
             articleMap.put("commentMapList",commentMapList);
             articleMap.put("commentNum",commentNum);
+            articleMap.put("articleUserName",articleUserName);
+
             articleMapList.add(articleMap);
            /* System.out.println(articleMap);
             System.out.println(commentNum);
@@ -154,6 +156,7 @@ public class ArticleController {
         List<Map> articleMapList=new ArrayList<>();
 
         for (Article article:articleList){
+            String articleUserName = userService.getUserNameById(article.getUserId());
 
             List<Comment> commentList=commentService.getArticleAllCommentById(article.getId());
             Collect collect = collectService.findByUserIdAndArticleId(userId,article.getId());
@@ -217,6 +220,7 @@ public class ArticleController {
             articleMap.put("commentNum",commentNum);
             articleMap.put("userName",userName);
             articleMap.put("userImage",userImage);
+            articleMap.put("articleUserName",articleUserName);
 
             articleMapList.add(articleMap);
                /* System.out.println(articleMap);
@@ -242,6 +246,7 @@ public class ArticleController {
         List<Map> articleMapList=new ArrayList<>();
 
         for (Article article:articleList){
+            String articleUserName = userService.getUserNameById(article.getUserId());
 
             List<Comment> commentList=commentService.getArticleAllCommentById(article.getId());
 
@@ -298,6 +303,8 @@ public class ArticleController {
             articleMap.put("article",article);
             articleMap.put("commentMapList",commentMapList);
             articleMap.put("commentNum",commentNum);
+            articleMap.put("articleUserName",articleUserName);
+
 
             articleMapList.add(articleMap);
 
@@ -313,7 +320,7 @@ public class ArticleController {
     public CommonResult<HashMap> getArticleByArticleId(@RequestParam("articleId") Integer articleId,
                                                        @RequestParam("userId") Integer userId){
         Article article=articleService.findById(articleId);
-
+        String articleUserName = userService.getUserNameById(article.getUserId());
         HashMap<String,Object> resultMap=new HashMap<>();
 
         List<Map> articleMapList=new ArrayList<>();
@@ -373,6 +380,7 @@ public class ArticleController {
         articleMap.put("article",article);
         articleMap.put("commentMapList",commentMapList);
         articleMap.put("commentNum",commentNum);
+        articleMap.put("articleUserName",articleUserName);
 
         articleMapList.add(articleMap);
 
