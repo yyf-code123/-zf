@@ -9,6 +9,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 2021-01-13 10:40
@@ -37,5 +39,10 @@ public class ClassificationServiceImpl implements ClassificationService {
     public Integer delete(Integer id) {
         Integer result = classificationDao.deleteClassification(id);
         return result;
+    }
+
+    @Override
+    public List<Classification> getAllClassification() {
+        return classificationDao.findAll();
     }
 }

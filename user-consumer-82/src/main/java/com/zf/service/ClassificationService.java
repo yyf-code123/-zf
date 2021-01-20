@@ -6,6 +6,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @FeignClient(value = "EARLYSTAGE-PROVIDER-SERVICE")
 @Service
 public interface ClassificationService {
@@ -21,5 +23,9 @@ public interface ClassificationService {
 
     @RequestMapping(value = "/classification/delete/{id}")
     public CommonResult<Classification> delete(@PathVariable("id") Integer id);
+
+    @GetMapping("/classification/getAllClassification")
+    public CommonResult<List> getAllClassification();
+
 
 }

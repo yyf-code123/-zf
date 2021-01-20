@@ -6,6 +6,7 @@ import com.zf.service.ClassificationService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/consumer/classification")
@@ -37,5 +38,9 @@ public class ClassificationController {
         return classificationService.delete(id);
     }
 
+    @GetMapping("/getAllClassification")
+    public CommonResult<List> getAllClassification(){
+        return classificationService.getAllClassification();
+    }
 
 }

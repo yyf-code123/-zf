@@ -17,4 +17,8 @@ public interface ThumbDao extends JpaRepository<Thumb,Integer>, JpaSpecification
     @Transactional
     @Rollback(value = false)
     public Integer delete(Integer id);
+
+    public Thumb findByCommentIdAndUserId(Integer id, Integer userId);
+
+    public Thumb findByReplyIdAndUserId(Integer id, Integer fromUserId);
 }

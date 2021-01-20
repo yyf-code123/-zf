@@ -19,4 +19,7 @@ public interface ClassificationDao extends JpaRepository<Classification,Integer>
     @Modifying
     @Query(value = "delete from classification  where id =?1",nativeQuery = true)
     public Integer deleteClassification(Integer id);
+
+    @Query(value = "select classification_name from classification where id=?",nativeQuery = true)
+    public String getClassificationNameById(Integer id);
 }

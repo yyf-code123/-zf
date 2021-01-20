@@ -38,5 +38,8 @@ public class CollectServiceImpl implements CollectService {
         return result;
     }
 
-
+    @Override
+    public Collect findByUserIdAndArticleId(Integer userId, Integer articleId) {
+        return collectDao.findByUserIdAndArticleId(userId,articleId);
+    }
 }

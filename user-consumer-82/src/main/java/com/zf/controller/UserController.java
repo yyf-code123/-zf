@@ -11,6 +11,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/consumer/user")
@@ -19,15 +21,17 @@ public class UserController {
     @Resource
     UserService userService;
 
-    @GetMapping(value = "/getOne/{id}")
-    @Cacheable(value = "user",key = "#id",unless = "#result==null")
-    public CommonResult<User> getOne(@PathVariable("id") Integer id){
+
+
+    @GetMapping(value = "/getOne/{phoneNum}")
+    @Cacheable(value = "user",key = "#phoneNum",unless = "#result==null")
+    public CommonResult<User> getOne(@PathVariable("phoneNum") String phoneNum){
       /*  try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }*/
-        return userService.getOne(id);
+        return userService.getOne(phoneNum);
     }
 
     @PostMapping(value = "/save")
@@ -47,5 +51,27 @@ public class UserController {
         return userService.delete(id);
     }
 
+//    发送短信验证码
+    @PostMapping("/sendRegisterMessage")
+    public CommonResult<String> sendRegisterMessage(String phoneNum){
+        return userService.sendRegisterMessage(phoneNum);
+    }
+
+
+//用户注册
+    @PostMapping(value = "/register")
+    public CommonResult<String> register(User user,String phone,String password){
+        return userService.register(user,phone,password);
+    }
+
+
+//  验证注册验证码是否正确
+    @PostMapping(value = "/verifyCode")
+    public CommonResult<String> verifyCode(@RequestParam("phone") String phone,
+                                           @RequestParam("code") String code){
+
+       return userService.verifyCode(phone,code);
+
+    }
 
 }

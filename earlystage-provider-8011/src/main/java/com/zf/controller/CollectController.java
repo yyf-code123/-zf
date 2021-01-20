@@ -43,4 +43,6 @@ public class CollectController {
             return new CommonResult(404, "删除失败");
         }
     }
+
+   // @GetMapping("/collect/{}")
 }

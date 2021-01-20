@@ -19,4 +19,6 @@ public interface CollectDao extends JpaRepository<Collect,Integer>, JpaSpecifica
     @Modifying
     @Query(value = "delete from collect where id =?1",nativeQuery = true)
     public Integer deleteCollect(Integer id);
+
+    public Collect findByUserIdAndArticleId(Integer userId, Integer articleId);
 }

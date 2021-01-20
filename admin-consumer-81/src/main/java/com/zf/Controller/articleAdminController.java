@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 
 /**
  * 2021-01-12 21:34
  */
 @RestController
 @RequestMapping("/consumer/admin/article")
-public class articleAdminController {
+public class ArticleAdminController {
 
     public final static String PAYMENT_URL="http://BACKSTAGE-PROVIDER-SERVICE";
-
 
     @Resource
     private RestTemplate restTemplate;
@@ -37,4 +37,8 @@ public class articleAdminController {
         return restTemplate.getForObject(PAYMENT_URL+"/admin/article/delete/"+id, CommonResult.class);
     }
 
+    @GetMapping("/getAllArticle")
+    public CommonResult<HashMap> getAllArticle(){
+        return restTemplate.getForObject(PAYMENT_URL+"/admin/article/getAllArticle", CommonResult.class);
+    }
 }

@@ -1,6 +1,8 @@
 server:
   port: 82
-
+  max-http-header-size: 1024000
+  tomcat:
+    max-http-form-post-size: 100MB
 spring:
   redis:
     host: 192.168.253.138
@@ -15,9 +17,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: org.gjt.mm.mysql.Driver
-    url: jdbc:mysql://localhost:3366/db_zf?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: root
+    url: jdbc:mysql://172.16.3.10:3306/db_zf?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: yyf
+    password: 123456
 
 
 

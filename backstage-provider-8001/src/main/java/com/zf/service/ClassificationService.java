@@ -12,4 +12,6 @@ public interface ClassificationService {
     public Classification save(Classification classification);
 
     public Integer delete(Integer id);
+
+    public String getClassificationNameById(Integer classificationId);
 }

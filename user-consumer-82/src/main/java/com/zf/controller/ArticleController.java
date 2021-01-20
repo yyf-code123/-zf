@@ -6,6 +6,7 @@ import com.zf.service.ArticleService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/consumer/article")
@@ -37,5 +38,18 @@ public class ArticleController {
         return articleService.delete(id);
     }
 
+    @GetMapping("/getAllArticle")
+    public CommonResult<HashMap> getAllArticle(){
+        return articleService.getAllArticle();
+    }
 
+    @GetMapping("/getUserArticle/{userId}")
+    public CommonResult<HashMap> getUserArticle(@PathVariable("userId") Integer userId){
+        return articleService.getUserArticle(userId);
+    }
+
+    @GetMapping("/getArticleByTitle")
+    public CommonResult<HashMap> getArticleByTitle(@RequestParam("title") String title){
+        return articleService.getArticleByTitle(title);
+    }
 }

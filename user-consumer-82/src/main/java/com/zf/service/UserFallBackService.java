@@ -2,6 +2,7 @@ package com.zf.service;
 
 import com.zf.entity.CommonResult;
 import com.zf.entity.User;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,7 +10,22 @@ public class UserFallBackService implements UserService{
 
 
     @Override
-    public CommonResult<User> getOne(Integer id) {
+    public CommonResult<String> sendRegisterMessage(String phoneNum) {
+        return null;
+    }
+
+    @Override
+    public CommonResult<String> verifyCode(String phone, String code) {
+        return null;
+    }
+
+    @Override
+    public CommonResult<String> register(User user,String phone, String password) {
+        return null;
+    }
+
+    @Override
+    public CommonResult<User> getOne(String phoneNum) {
         return new CommonResult<>(410,"请求user的getOne出现错误请重试");
     }
 

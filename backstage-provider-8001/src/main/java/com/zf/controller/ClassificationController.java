@@ -8,6 +8,8 @@ import com.zf.service.ClassificationService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.DateFormat;
+import java.util.Date;
 
 /**
  * 2021-01-13 11:29
@@ -28,6 +30,10 @@ public class ClassificationController {
 
     @PostMapping("/save")
     public CommonResult save(@RequestBody Classification classification){
+        Date date = new Date();
+        DateFormat df = DateFormat.getDateTimeInstance();
+        String dateTime = df.format(date);
+        classification.setBuiltTime(dateTime);
         Classification result = classificationService.save(classification);
         if(null!=result) {
             return new CommonResult(200, "更新成功", result);
@@ -35,6 +41,22 @@ public class ClassificationController {
             return new CommonResult(404,"更新失败");
         }
     }
+
+    @PostMapping("/update")
+    public CommonResult update(@RequestBody Classification classification){
+        Date date = new Date();
+        DateFormat df = DateFormat.getDateTimeInstance();
+        String dateTime = df.format(date);
+        classification.setBuiltTime(dateTime);
+        Classification result = classificationService.save(classification);
+        if(null!=result) {
+            return new CommonResult(200, "更新成功", result);
+        }else{
+            return new CommonResult(404,"更新失败");
+        }
+    }
+
+
 
     @GetMapping("/delete/{id}")
     public CommonResult delete(@PathVariable("id") Integer id){
@@ -45,4 +67,6 @@ public class ClassificationController {
             return new CommonResult(404, "删除失败");
         }
     }
+
+
 }

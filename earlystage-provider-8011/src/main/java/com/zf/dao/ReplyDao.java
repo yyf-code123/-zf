@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface ReplyDao extends JpaRepository<Reply,Integer>, JpaSpecificationExecutor {
 
@@ -17,4 +18,6 @@ public interface ReplyDao extends JpaRepository<Reply,Integer>, JpaSpecification
     @Transactional
     @Rollback(value = false)
     public Integer delete(Integer id);
+
+    public List<Reply> findByCommentId(Integer commentId);
 }

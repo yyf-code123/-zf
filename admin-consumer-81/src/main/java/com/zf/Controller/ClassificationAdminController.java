@@ -32,6 +32,11 @@ public class ClassificationAdminController {
         return restTemplate.postForObject(PAYMENT_URL+"/admin/classification/save",classification,CommonResult.class);
     }
 
+    @PostMapping("/update")
+    public CommonResult<Classification> update(Classification classification){
+        return restTemplate.postForObject(PAYMENT_URL+"/admin/classification/update",classification,CommonResult.class);
+    }
+
     @GetMapping("/delete/{id}")
     public CommonResult<Classification> delete(@PathVariable(value = "id")Long id){
         return restTemplate.getForObject(PAYMENT_URL+"/admin/classification/delete/"+id, CommonResult.class);

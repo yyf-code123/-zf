@@ -2,12 +2,15 @@ package com.zf.controller;
 
 import com.zf.entity.Article;
 import com.zf.entity.Classification;
+import com.zf.entity.Comment;
 import com.zf.entity.CommonResult;
 import com.zf.service.ArticleService;
 import com.zf.service.ClassificationService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 2021-01-13 11:29
@@ -44,5 +47,14 @@ public class ClassificationController {
         }else{
             return new CommonResult(404, "删除失败");
         }
+    }
+
+    @GetMapping("/getAllClassification")
+    public CommonResult<List> getAllClassification(){
+
+        List<Classification> classificationList = classificationService.getAllClassification();
+        return new CommonResult<List>(200,"成功查询到所有分类",classificationList);
+
+
     }
 }

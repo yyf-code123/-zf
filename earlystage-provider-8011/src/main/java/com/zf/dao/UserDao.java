@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 public interface UserDao extends JpaRepository<User,Integer>, JpaSpecificationExecutor {
 
@@ -17,5 +18,14 @@ public interface UserDao extends JpaRepository<User,Integer>, JpaSpecificationEx
     @Rollback(value = false)
     public Integer delete(Integer id);
 
+    public User findByUserPhone(String userPhone);
 
+    @Query(value = "select  * from user where user_phone = ?1",nativeQuery = true)
+    public User findOne(Integer id);
+
+    @Query(value = "select user_nickname from user where id=?",nativeQuery = true)
+    public String getUserNameById(Integer UserId);
+
+    @Query(value = "select user_image from user where id=?",nativeQuery = true)
+    public String getUserImageById(Integer userId);
 }

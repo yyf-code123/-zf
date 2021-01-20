@@ -11,6 +11,11 @@ public interface ThumbService {
 
     public Thumb update(Thumb thumb);
 
-    @Query(value = "delete from Thumb where id = ?1")
     public Integer delete(Integer id);
+
+    public Long getThumbNumById(String condition,Integer id);
+
+    public Thumb findByCommentIdAndUserId(Integer id, Integer userId);
+
+    public Thumb findByReplyIdAndUserId(Integer id, Integer fromUserId);
 }

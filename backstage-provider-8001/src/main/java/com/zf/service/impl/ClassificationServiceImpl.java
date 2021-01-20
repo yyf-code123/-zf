@@ -38,4 +38,9 @@ public class ClassificationServiceImpl implements ClassificationService {
         Integer result = classificationDao.deleteClassification(id);
         return result;
     }
+
+    @Override
+    public String getClassificationNameById(Integer classificationId) {
+        return classificationDao.getClassificationNameById(classificationId);
+    }
 }

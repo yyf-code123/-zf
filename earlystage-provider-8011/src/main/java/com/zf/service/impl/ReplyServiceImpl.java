@@ -6,6 +6,7 @@ import com.zf.service.ReplyService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
@@ -31,5 +32,10 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public Integer delete(Integer id) {
         return replyDao.delete(id);
+    }
+
+    @Override
+    public List<Reply> getCommentAllReply(Integer commentId) {
+        return replyDao.findByCommentId(commentId);
     }
 }

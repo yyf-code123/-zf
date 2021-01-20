@@ -8,6 +8,9 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 2021-01-12 20:26
@@ -31,9 +34,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     public Integer delete(Integer id){
-        Integer result = articleDao.deleteArtilce(id);
+        Integer result = articleDao.deleteArticle(id);
         return result;
     }
 
-
+    @Override
+    public ArrayList<Article> getAllArticle() {
+        return articleDao.getAllArticle();
+    }
 }

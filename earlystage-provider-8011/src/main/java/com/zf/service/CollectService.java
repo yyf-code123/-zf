@@ -12,4 +12,6 @@ public interface CollectService {
     public Collect save(Collect collect);
 
     public Integer delete(Integer id);
+
+    public Collect findByUserIdAndArticleId(Integer userId, Integer id);
 }

@@ -6,11 +6,13 @@ import com.zf.entity.Article;
 import com.zf.entity.Comment;
 import com.zf.service.ArticleService;
 import com.zf.service.CommentService;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 2021-01-12 20:26
@@ -38,5 +40,14 @@ public class CommentServiceImpl implements CommentService {
         return result;
     }
 
+    @Override
+    public List<Comment> getArticleAllCommentById(Integer id) {
 
+        return commentDao.findAllById(id);
+    }
+
+    @Override
+    public Long getArticleCommentNumById(Integer id) {
+        return commentDao.getArticleCommentNum(id);
+    }
 }

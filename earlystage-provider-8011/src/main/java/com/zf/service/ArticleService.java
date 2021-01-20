@@ -7,6 +7,7 @@ import com.zf.entity.Article;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 public interface ArticleService {
 
@@ -16,4 +17,9 @@ public interface ArticleService {
 
     public Integer delete(Integer id);
 
+    public List<Article> getAllArticle();
+
+    public List<Article> getUserArticle(Integer userId);
+
+    public List<Article> getArticleByTitle(String title);
 }
