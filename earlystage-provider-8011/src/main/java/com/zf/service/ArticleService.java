@@ -22,4 +22,5 @@ public interface ArticleService {
     public List<Article> getUserArticle(Integer userId);
 
     public List<Article> getArticleByTitle(String title);
+
 }

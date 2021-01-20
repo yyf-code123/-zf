@@ -2,6 +2,7 @@ package com.zf.controller;
 
 import com.zf.entity.CommonResult;
 import com.zf.entity.Thumb;
+import com.zf.service.ReplyService;
 import com.zf.service.ThumbService;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +37,24 @@ public class ThumbController {
     public CommonResult<Thumb> delete(@PathVariable("id") Integer id){
         thumbService.delete(id);
         return new CommonResult<>(200,"删除成功");
+    }
+
+    @GetMapping("/replyThumb")
+    public CommonResult<Thumb> replyThumb(@RequestParam("replyId") Integer replyId,
+                                          @RequestParam("status")Boolean status,
+                                          @RequestParam("userId")Integer userId){
+        if(status.equals(true)) {
+            Thumb thumb = new Thumb();
+            thumb.setReplyId(replyId);
+            thumb.setUserId(userId);
+            thumbService.save(thumb);
+            return new CommonResult<>(200, "点赞成功");
+
+        }else {
+            thumbService.deleteByReplyIdAndUserId(replyId,userId);
+            return new CommonResult<>(200, "取消点赞成功");
+
+        }
+
     }
 }

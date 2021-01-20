@@ -39,8 +39,8 @@ public class ArticleController {
     }
 
     @GetMapping("/getAllArticle")
-    public CommonResult<HashMap> getAllArticle(){
-        return articleService.getAllArticle();
+    public CommonResult<HashMap> getAllArticle(Integer userId){
+        return articleService.getAllArticle(userId);
     }
 
     @GetMapping("/getUserArticle/{userId}")
@@ -49,7 +49,12 @@ public class ArticleController {
     }
 
     @GetMapping("/getArticleByTitle")
-    public CommonResult<HashMap> getArticleByTitle(@RequestParam("title") String title){
-        return articleService.getArticleByTitle(title);
+    public CommonResult<HashMap> getArticleByTitle(String title, Integer userId){
+        return articleService.getArticleByTitle(title,userId);
+    }
+
+    @GetMapping("/getArticleByArticleId")
+    public CommonResult<HashMap> getArticleByArticleId(Integer articleId,Integer userId){
+        return articleService.getArticleByArticleId(articleId,userId);
     }
 }

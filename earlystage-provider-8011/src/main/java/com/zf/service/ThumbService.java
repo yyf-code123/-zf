@@ -18,4 +18,6 @@ public interface ThumbService {
     public Thumb findByCommentIdAndUserId(Integer id, Integer userId);
 
     public Thumb findByReplyIdAndUserId(Integer id, Integer fromUserId);
+
+    public void deleteByReplyIdAndUserId(Integer replyId, Integer userId);
 }

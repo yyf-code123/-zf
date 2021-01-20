@@ -27,4 +27,5 @@ public interface ArticleDao extends JpaRepository<Article,Integer>, JpaSpecifica
     public List<Article> findAllByUserId(Integer userId);
 
     public List<Article> findAllByTitleLike(String title);
+
 }

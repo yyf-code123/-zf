@@ -21,4 +21,10 @@ public interface ThumbDao extends JpaRepository<Thumb,Integer>, JpaSpecification
     public Thumb findByCommentIdAndUserId(Integer id, Integer userId);
 
     public Thumb findByReplyIdAndUserId(Integer id, Integer fromUserId);
+
+    @Query(value = "delete from Thumb where replyId=?1 and userId=?2")
+    @Modifying
+    @Transactional
+    @Rollback(value = false)
+    public void deleteByReplyIdAndUserId(Integer replyId, Integer userId);
 }

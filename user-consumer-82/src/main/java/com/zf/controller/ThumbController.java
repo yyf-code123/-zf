@@ -39,5 +39,8 @@ public class ThumbController {
         return thumbService.delete(id);
     }
 
-
+    @GetMapping("/replyThumb")
+    public CommonResult<Thumb> replyThumb(Integer replyId,Boolean status,Integer userId){
+        return thumbService.replyThumb(replyId,status,userId);
+    }
 }

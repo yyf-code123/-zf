@@ -82,12 +82,6 @@ public class UserController {
     public CommonResult<HashMap> getUserByPhone(String phone){
         HashMap<String, Object> userMap = new HashMap<>();
         System.out.println(phone);
-        if(phone.equals("null")){
-            ArrayList<User> userList = (ArrayList<User>) userService.getAllUser();
-            userMap.put("userList",userList);
-            return new CommonResult<HashMap>(200,"成功查询到此用户",userMap);
-
-        }
 
         User user = userService.getUserByPhone(phone);
         if(user==null){

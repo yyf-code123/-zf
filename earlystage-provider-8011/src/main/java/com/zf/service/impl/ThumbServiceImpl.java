@@ -74,4 +74,9 @@ public class ThumbServiceImpl implements ThumbService {
     public Thumb findByReplyIdAndUserId(Integer id, Integer fromUserId) {
         return thumbDao.findByReplyIdAndUserId(id,fromUserId);
     }
+
+    @Override
+    public void deleteByReplyIdAndUserId(Integer replyId, Integer userId) {
+             thumbDao.deleteByReplyIdAndUserId(replyId,userId);
+    }
 }

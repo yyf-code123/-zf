@@ -70,7 +70,7 @@ public class ArticleController {
 //    查询文章及评论
     @GetMapping("/getAllArticle")
  //   @Cacheable(value = "article")
-    public CommonResult<HashMap> getAllArticle(){
+    public CommonResult<HashMap> getAllArticle(@RequestParam("userId") Integer userId){
         List<Article> articleList=articleService.getAllArticle();
         HashMap<String,Object> resultMap=new HashMap<>();
         List<Map> articleMapList=new ArrayList<>();
@@ -87,7 +87,7 @@ public class ArticleController {
                 String commentUserName = userService.getUserNameById(comment.getUserId());
                 Long commentThumbNum = thumbService.getThumbNumById("commentId",comment.getId());
 
-                Thumb commentThumb = thumbService.findByCommentIdAndUserId(comment.getId(),comment.getUserId());
+                Thumb commentThumb = thumbService.findByCommentIdAndUserId(comment.getId(),userId);
                 Boolean commentThumbUp=false;
                 if(commentThumb!=null){
                     commentThumbUp=true;
@@ -100,7 +100,7 @@ public class ArticleController {
                     String fromUserName = userService.getUserNameById(reply.getFromUserId());
                     String toUserName = userService.getUserNameById(reply.getToUserId());
                     Long replyThumbNum = thumbService.getThumbNumById("replyId",reply.getId());
-                    Thumb replyThumb = thumbService.findByReplyIdAndUserId(reply.getId(),reply.getFromUserId());
+                    Thumb replyThumb = thumbService.findByReplyIdAndUserId(reply.getId(),userId);
                     Boolean replyThumbUp=false;
                     if(replyThumb!=null){
                         replyThumbUp=true;
@@ -170,7 +170,7 @@ public class ArticleController {
                 String commentUserName = userService.getUserNameById(comment.getUserId());
                 Long commentThumbNum = thumbService.getThumbNumById("commentId",comment.getId());
 
-                Thumb commentThumb = thumbService.findByCommentIdAndUserId(comment.getId(),comment.getUserId());
+                Thumb commentThumb = thumbService.findByCommentIdAndUserId(comment.getId(),userId);
                 Boolean commentThumbUp=false;
                 if(commentThumb!=null){
                     commentThumbUp=true;
@@ -183,7 +183,7 @@ public class ArticleController {
                     String fromUserName = userService.getUserNameById(reply.getFromUserId());
                     String toUserName = userService.getUserNameById(reply.getToUserId());
                     Long replyThumbNum = thumbService.getThumbNumById("replyId",reply.getId());
-                    Thumb replyThumb = thumbService.findByReplyIdAndUserId(reply.getId(),reply.getFromUserId());
+                    Thumb replyThumb = thumbService.findByReplyIdAndUserId(reply.getId(),userId);
                     Boolean replyThumbUp=false;
                     if(replyThumb!=null){
                         replyThumbUp=true;
@@ -232,7 +232,8 @@ public class ArticleController {
 
 //    按标题搜索文章
     @GetMapping("/getArticleByTitle")
-    public CommonResult<HashMap> getArticleByTitle(String title){
+    public CommonResult<HashMap> getArticleByTitle(@RequestParam("title") String title
+                                                    ,@RequestParam("userId") Integer userId){
         List<Article> articleList=articleService.getArticleByTitle("%"+title+"%");
 
         HashMap<String,Object> resultMap=new HashMap<>();
@@ -253,7 +254,7 @@ public class ArticleController {
                 String commentUserName = userService.getUserNameById(comment.getUserId());
                 Long commentThumbNum = thumbService.getThumbNumById("commentId",comment.getId());
 
-                Thumb commentThumb = thumbService.findByCommentIdAndUserId(comment.getId(),comment.getUserId());
+                Thumb commentThumb = thumbService.findByCommentIdAndUserId(comment.getId(),userId);
                 Boolean commentThumbUp=false;
                 if(commentThumb!=null){
                     commentThumbUp=true;
@@ -266,7 +267,7 @@ public class ArticleController {
                     String fromUserName = userService.getUserNameById(reply.getFromUserId());
                     String toUserName = userService.getUserNameById(reply.getToUserId());
                     Long replyThumbNum = thumbService.getThumbNumById("replyId",reply.getId());
-                    Thumb replyThumb = thumbService.findByReplyIdAndUserId(reply.getId(),reply.getFromUserId());
+                    Thumb replyThumb = thumbService.findByReplyIdAndUserId(reply.getId(),userId);
                     Boolean replyThumbUp=false;
                     if(replyThumb!=null){
                         replyThumbUp=true;
@@ -301,6 +302,81 @@ public class ArticleController {
             articleMapList.add(articleMap);
 
         }
+
+        resultMap.put("articleMapList",articleMapList);
+
+        return new CommonResult<HashMap>(200, "成功查询与此标题相关的所有文章",resultMap);
+
+    }
+
+    @GetMapping("/getArticleByArticleId")
+    public CommonResult<HashMap> getArticleByArticleId(@RequestParam("articleId") Integer articleId,
+                                                       @RequestParam("userId") Integer userId){
+        Article article=articleService.findById(articleId);
+
+        HashMap<String,Object> resultMap=new HashMap<>();
+
+        List<Map> articleMapList=new ArrayList<>();
+
+        List<Comment> commentList=commentService.getArticleAllCommentById(article.getId());
+
+        ArrayList<HashMap> commentMapList = new ArrayList<>();
+
+        for(Comment comment:commentList){
+            HashMap<String, Object> commentMap = new HashMap<>();
+
+            List<Reply> replyList = replyService.getCommentAllReply(comment.getId());
+            String commentUserName = userService.getUserNameById(comment.getUserId());
+            Long commentThumbNum = thumbService.getThumbNumById("commentId",comment.getId());
+
+            Thumb commentThumb = thumbService.findByCommentIdAndUserId(comment.getId(),userId);
+            Boolean commentThumbUp=false;
+            if(commentThumb!=null){
+                commentThumbUp=true;
+            }
+
+            ArrayList<HashMap> replyMapList = new ArrayList<>();
+
+            for(Reply reply:replyList){
+
+                String fromUserName = userService.getUserNameById(reply.getFromUserId());
+                String toUserName = userService.getUserNameById(reply.getToUserId());
+                Long replyThumbNum = thumbService.getThumbNumById("replyId",reply.getId());
+                Thumb replyThumb = thumbService.findByReplyIdAndUserId(reply.getId(),userId);
+                Boolean replyThumbUp=false;
+                if(replyThumb!=null){
+                    replyThumbUp=true;
+                }
+
+                HashMap<String, Object> rePlyMap = new HashMap<>();
+                rePlyMap.put("reply",reply);
+                rePlyMap.put("fromUserName",fromUserName);
+                rePlyMap.put("toUserName",toUserName);
+                rePlyMap.put("replyThumbNum",replyThumbNum);
+                rePlyMap.put("replyThumbUp",replyThumbUp);
+
+                replyMapList.add(rePlyMap);
+            }
+            commentMap.put("comment",comment);
+            commentMap.put("replyMapList",replyMapList);
+            commentMap.put("commentUserName",commentUserName);
+            commentMap.put("commentThumbNum",commentThumbNum);
+            commentMap.put("commentThumbUp",commentThumbUp);
+
+            commentMapList.add(commentMap);
+
+        }
+
+        Long commentNum=commentService.getArticleCommentNumById(article.getId());
+
+        HashMap<String, Object> articleMap = new HashMap<>();
+        articleMap.put("article",article);
+        articleMap.put("commentMapList",commentMapList);
+        articleMap.put("commentNum",commentNum);
+
+        articleMapList.add(articleMap);
+
+
 
         resultMap.put("articleMapList",articleMapList);
 

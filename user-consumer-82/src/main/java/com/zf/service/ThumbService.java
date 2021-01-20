@@ -22,4 +22,8 @@ public interface ThumbService {
     @RequestMapping(value = "/thumb/delete/{id}")
     public CommonResult<Thumb> delete(@PathVariable("id") Integer id);
 
+    @GetMapping("/thumb/replyThumb")
+    public CommonResult<Thumb> replyThumb(@RequestParam("replyId") Integer replyId,
+                                          @RequestParam("status")Boolean status,
+                                          @RequestParam("userId")Integer userId);
 }

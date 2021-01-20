@@ -70,4 +70,6 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getArticleByTitle(String title) {
         return articleDao.findAllByTitleLike(title);
     }
+
+
 }

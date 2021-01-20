@@ -25,11 +25,16 @@ public interface ArticleService {
     public CommonResult<Article> delete(@PathVariable("id") Integer id);
 
     @GetMapping("/article/getAllArticle")
-    public CommonResult<HashMap> getAllArticle();
+    public CommonResult<HashMap> getAllArticle(@RequestParam("userId") Integer userId);
 
     @GetMapping("/article/getUserArticle/{userId}")
     public CommonResult<HashMap> getUserArticle(@PathVariable("userId") Integer userId);
 
     @GetMapping("/article/getArticleByTitle")
-    public CommonResult<HashMap> getArticleByTitle(@RequestParam("title")String title);
+    public CommonResult<HashMap> getArticleByTitle(@RequestParam("title")String title,
+                                                   @RequestParam("userId") Integer userId);
+
+    @GetMapping("/article/getArticleByArticleId")
+    public CommonResult<HashMap> getArticleByArticleId(@RequestParam("articleId") Integer articleId,
+                                                       @RequestParam("userId") Integer userId);
 }
